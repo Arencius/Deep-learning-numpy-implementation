@@ -9,7 +9,7 @@ class TestRelu(unittest.TestCase):
         self.relu = Relu()
         self.output = self.relu.forward(self.x)
 
-    def test_output_shape(self):
+    def test_relu_output_shape(self):
         self.assertEqual(self.output.shape, self.x.shape)
 
     def test_if_output_is_correct(self):
