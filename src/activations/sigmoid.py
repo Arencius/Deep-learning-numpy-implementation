@@ -16,3 +16,11 @@ class Softmax(BaseLayer):
 
     def backward(self, output_gradients):
         raise NotImplementedError
+
+
+class Tanh(BaseLayer):
+    def forward(self, x):
+        return np.sinh(x) / np.cosh(x)
+
+    def backward(self, output_gradients):
+        raise NotImplementedError
