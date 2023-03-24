@@ -24,3 +24,15 @@ class Tanh(BaseLayer):
 
     def backward(self, output_gradients):
         raise NotImplementedError
+
+
+class SiLU(BaseLayer):
+    def __init__(self):
+        super().__init__()
+        self.sigmoid = Sigmoid()
+
+    def forward(self, x):
+        return x * self.sigmoid.forward(x)
+
+    def backward(self, *args):
+        raise NotImplementedError
