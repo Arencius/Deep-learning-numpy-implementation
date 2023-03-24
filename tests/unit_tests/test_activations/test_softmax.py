@@ -18,3 +18,14 @@ class TestSoftmax(unittest.TestCase):
             1.2256e-04, 6.6916e-03, 9.9312e-01
         ])
         np.testing.assert_almost_equal(expected_output, self.output, decimal=5)
+
+    def test_softmax_output_range(self):
+        expected_min, expected_max = 0.0, 1.0
+        elements_in_range = np.logical_and(
+            self.output >= expected_min,
+            self.output <= expected_max
+        )
+        self.assertTrue(np.all(elements_in_range))
+
+    def test_if_softmax_output_sums_to_1(self):
+        self.assertEqual(self.output.sum(), 1.0)
