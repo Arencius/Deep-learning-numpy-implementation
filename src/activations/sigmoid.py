@@ -7,7 +7,8 @@ class Sigmoid(BaseLayer):
         return np.exp(x) / (np.exp(x) + 1)
 
     def backward(self, output_gradients):
-        return NotImplementedError
+        sigmoid = self.forward(output_gradients)
+        return sigmoid * (1.0 - sigmoid)
 
 
 class Softmax(BaseLayer):
@@ -15,7 +16,8 @@ class Softmax(BaseLayer):
         return np.exp(x) / np.exp(x).sum()
 
     def backward(self, output_gradients):
-        raise NotImplementedError
+        softmax = self.forward(output_gradients)
+        return softmax * (1.0 - softmax)
 
 
 class Tanh(BaseLayer):
