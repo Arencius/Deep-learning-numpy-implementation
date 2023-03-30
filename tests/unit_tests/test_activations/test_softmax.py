@@ -26,7 +26,7 @@ class TestSoftmax(unittest.TestCase):
         ])
         np.testing.assert_almost_equal(expected_output, self.softmax.backward(self.x), decimal=5)
 
-    def test_softmax_output_range(self):
+    def test_softmax_forward_output_range(self):
         expected_min, expected_max = 0.0, 1.0
         elements_in_range = np.logical_and(
             self.forward_output >= expected_min,
