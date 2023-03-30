@@ -25,7 +25,8 @@ class Tanh(BaseLayer):
         return np.sinh(x) / np.cosh(x)
 
     def backward(self, output_gradients):
-        raise NotImplementedError
+        tanh = self.forward(output_gradients)
+        return 1.0 - (tanh ** 2)
 
 
 class SiLU(BaseLayer):
