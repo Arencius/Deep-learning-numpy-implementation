@@ -37,5 +37,6 @@ class SiLU(BaseLayer):
     def forward(self, x):
         return x * self.sigmoid.forward(x)
 
-    def backward(self, *args):
-        raise NotImplementedError
+    def backward(self, output_gradients):
+        sigmoid = self.sigmoid.forward(output_gradients)
+        return sigmoid * (1 + output_gradients * (1 - sigmoid))
