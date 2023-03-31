@@ -12,7 +12,7 @@ class Relu(BaseLayer):
 
 class LeakyRelu(BaseLayer):
     def __init__(self, alpha=0.2):
-        super().__init__(alpha)
+        super().__init__()
         self.alpha = alpha
 
     def forward(self, x):
