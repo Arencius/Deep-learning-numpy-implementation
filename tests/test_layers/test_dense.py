@@ -20,7 +20,10 @@ class TestDenseLayer(unittest.TestCase):
         expected_shape = (self.input_neurons, self.output_neurons)
         self.assertEqual(expected_shape, self.dense.weights.shape)
 
-    def test_output_shape(self):
+    def test_forward_output_shape(self):
         expected_shape = (1, self.output_neurons)
-        output_shape = self.dense.forward(self.x).shape
-        self.assertEqual(expected_shape, output_shape)
+        self.assertEqual(expected_shape, self.dense.output_shape)
+
+    def test_number_of_parameters(self):
+        expected_no_params = (128 * 256) + 256
+        self.assertEqual(expected_no_params, self.dense.parameters)

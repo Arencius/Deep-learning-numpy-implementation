@@ -1,23 +1,34 @@
 import numpy as np
-from src.layers.layer import BaseLayer
+from src.layers.layer import Layer
 
 
-class DenseLayer(BaseLayer):
+class DenseLayer(Layer):
     def __init__(self,
-                 input_neurons,
-                 output_neurons):
+                 input_neurons: int,
+                 output_neurons: int):
         super().__init__()
 
         self.input_neurons = input_neurons
         self.output_neurons = output_neurons
+        self.input_data = None
 
-        self.weights = np.random.normal(size=(self.input_neurons, self.output_neurons)) * 0.1
+        self.weights = self._initialize_weights()
         self.biases = np.zeros(shape=(1, self.output_neurons))
-        self.parameters = (self.input_neurons * self.output_neurons) + self.output_neurons
+
+    @property
+    def parameters(self):
+        return (self.input_neurons * self.output_neurons) + self.output_neurons
+
+    @property
+    def output_shape(self):
+        return (1, self.output_neurons)
+
+    def _initialize_weights(self):
+        return np.random.normal(size=(self.input_neurons, self.output_neurons))
 
     def forward(self, x):
-        self.layer_output = np.dot(x, self.weights) + self.biases
-        return self.layer_output
+        self.input_data = x
+        return np.dot(x, self.weights) + self.biases
 
     def backward(self, output_gradients):
         raise NotImplementedError
