@@ -6,6 +6,11 @@ class DenseLayer(Layer):
     def __init__(self,
                  input_neurons: int,
                  output_neurons: int):
+        """
+        Fully connected layer. This class inherits from Layer class
+        :param input_neurons: number of neurons (features) given as an input to the layer
+        :param output_neurons: number of output neurons of the layer
+        """
         super().__init__()
 
         self.input_neurons = input_neurons
