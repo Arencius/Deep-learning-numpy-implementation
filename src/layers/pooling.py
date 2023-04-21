@@ -32,10 +32,12 @@ class PoolingLayer(Layer, ABC):
         batch_size = images.shape[0]
 
         shape = (batch_size, self.output_shape[0], self.output_shape[1], self.pool_size, self.pool_size, self.channels)
-        strides = (images.strides[0], images.strides[1] * 2, images.strides[2] * 2, images.strides[1], images.strides[2],
-                   images.strides[3])
-        sub_matrices = np.lib.stride_tricks.as_strided(images, shape=shape, strides=strides)
+        strides = (images.strides[0], images.strides[1] * self.stride, images.strides[2] * self.stride,
+                   images.strides[1], images.strides[2],  images.strides[3])
 
+        sub_matrices = np.lib.stride_tricks.as_strided(images,
+                                                       shape=shape,
+                                                       strides=strides)
         return sub_matrices
 
     def forward(self, x):
