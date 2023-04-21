@@ -27,3 +27,9 @@ class TestDenseLayer(unittest.TestCase):
     def test_number_of_parameters(self):
         expected_no_params = (128 * 256) + 256
         self.assertEqual(expected_no_params, self.dense.parameters)
+
+    def test_forward_output_shape_on_batch(self):
+        batch = np.random.rand(5, 128)
+        expected_output_shape = (5, 256)
+        output = self.dense.forward(batch)
+        self.assertEqual(expected_output_shape, output.shape)
