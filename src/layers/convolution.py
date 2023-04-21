@@ -42,7 +42,7 @@ class Conv2DLayer(Layer):
         return int(output_height), int(output_width), self.output_filters
 
     def _initialize_weights(self):
-        return np.random.normal(size=(self.filter_size, self.filter_size, self.channels, self.output_filters))
+        return np.random.normal(size=(self.filter_size, self.filter_size, self.channels, self.output_filters)) * 0.01
 
     def pad_image(self, image):
         padded = np.pad(image, ((0, 0), (1, 1), (1, 1), (0, 0)), mode='constant')

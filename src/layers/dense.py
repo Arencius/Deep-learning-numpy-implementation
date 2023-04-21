@@ -29,7 +29,7 @@ class DenseLayer(Layer):
         return (1, self.output_neurons)
 
     def _initialize_weights(self):
-        return np.random.normal(size=(self.input_neurons, self.output_neurons))
+        return np.random.normal(size=(self.input_neurons, self.output_neurons)) * 0.01
 
     def forward(self, x):
         self.input_data = x
