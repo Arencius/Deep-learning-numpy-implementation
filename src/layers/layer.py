@@ -26,8 +26,8 @@ class Layer(BaseLayer):
         return 0
 
     @property
-    def output_shape(self):
-        return 0
+    def output_shape(self) -> tuple:
+        raise NotImplementedError
 
     def _initialize_weights(self):
         raise NotImplementedError
