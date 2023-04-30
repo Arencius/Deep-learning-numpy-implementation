@@ -4,10 +4,11 @@ from src.layers.layer import BaseLayer
 
 class Relu(BaseLayer):
     def forward(self, x):
+        self.layer_input = x
         return np.maximum(0, x)
 
     def backward(self, output_gradients):
-        return np.where(output_gradients >= 0, 1, 0)
+        return output_gradients * np.where(self.layer_input > 0, 1, 0)
 
 
 class LeakyRelu(BaseLayer):
@@ -16,7 +17,8 @@ class LeakyRelu(BaseLayer):
         self.alpha = alpha
 
     def forward(self, x):
+        self.layer_input = x
         return np.maximum(x, self.alpha * x)
 
     def backward(self, output_gradients):
-        return np.where(output_gradients >= 0, 1, self.alpha)
+        return output_gradients * np.where(self.layer_input >= 0, 1, self.alpha)
