@@ -12,6 +12,7 @@ class Sigmoid(BaseLayer):
         s = sigmoid * (1.0 - sigmoid)
         return output_gradients * s
 
+
 class Softmax(BaseLayer):
     def forward(self, x):
         self.layer_input = x
@@ -21,6 +22,7 @@ class Softmax(BaseLayer):
         softmax = self.forward(self.layer_input)
         s = softmax * (1.0 - softmax)
         return output_gradients * s
+
 
 class Tanh(BaseLayer):
     def forward(self, x):
