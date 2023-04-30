@@ -7,7 +7,7 @@ class DenseLayer(Layer):
                  input_neurons: int,
                  output_neurons: int):
         """
-        Fully connected layer. This class inherits from Layer class
+        Fully connected layer
         :param input_neurons: number of neurons (features) given as an input to the layer
         :param output_neurons: number of output neurons of the layer
         """

@@ -13,13 +13,10 @@ class BaseLayer(ABC):
 
 class Layer(BaseLayer):
     def __repr__(self):
-        return f'''
-        ----------------------------------
+        return f'''----------------------------------
         Name: {self.__class__.__name__}
         Parameters: {self.parameters}
-        Output shape: {self.output_shape}
-        ----------------------------------
-        '''
+        Output shape: {self.output_shape}'''
 
     @property
     def parameters(self):
