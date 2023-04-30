@@ -29,10 +29,13 @@ class DenseLayer(Layer):
         return (1, self.output_neurons)
 
     def _initialize_weights(self):
-        return np.random.normal(size=(self.input_neurons, self.output_neurons)) * 0.01
+        limit = np.sqrt(1 / (self.input_neurons + self.output_neurons))
+        return np.random.uniform(low=-limit,
+                                 high=limit,
+                                 size=(self.input_neurons, self.output_neurons))
 
     def forward(self, x):
-        self.input_data = x
+        self.layer_input = x
         return np.dot(x, self.weights) + self.biases
 
     def backward(self, output_gradients):
