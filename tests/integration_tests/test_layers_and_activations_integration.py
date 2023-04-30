@@ -25,7 +25,7 @@ class TestLayersAndActivations(unittest.TestCase):
         self.relu = Relu()
         self.softmax = Softmax()
 
-        self.pipeline = [self.conv, self.pool, self.relu]#, self.flatten, self.dense, self.softmax]
+        self.pipeline = [self.conv, self.pool, self.relu, self.flatten, self.dense, self.softmax]
 
     def _run_pipeline(self):
         x = self.batch
@@ -37,8 +37,7 @@ class TestLayersAndActivations(unittest.TestCase):
         self._run_pipeline()
 
     def test_pipeline_output_shape(self):
-        expected_output_shape = (5, 16, 16, 64)
+        expected_output_shape = (5, 10)
         output = self._run_pipeline()
-        print(output)
 
         self.assertEqual(expected_output_shape, output.shape)

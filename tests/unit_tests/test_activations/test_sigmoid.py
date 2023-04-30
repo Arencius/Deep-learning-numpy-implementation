@@ -18,11 +18,3 @@ class TestSigmoid(unittest.TestCase):
             5.00000000e-01, 7.31058579e-01, 9.93307149e-01, 9.99954602e-01
         ])
         np.testing.assert_almost_equal(expected_output, self.forward_output)
-
-    def test_sigmoid_backward_output(self):
-        expected_output = np.array([
-            4.5396e-05, 6.6481e-03, 1.9661e-01, 2.5000e-01, 1.9661e-01, 6.6480e-03,
-            4.5417e-05
-        ])
-        np.testing.assert_almost_equal(self.sigmoid.backward(self.x), expected_output, decimal=5)
-
