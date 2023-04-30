@@ -26,11 +26,7 @@ class PoolingLayer(Layer, ABC):
         raise NotImplementedError
 
     def _get_submatrices(self, images):
-        if len(images.shape) < 4:    # adds batch dimension for single image input (h,w,c -> batch,h,w,c)
-            images = images[np.newaxis, ...]
-
         batch_size = images.shape[0]
-
         shape = (batch_size, self.output_shape[0], self.output_shape[1], self.pool_size, self.pool_size, self.channels)
         strides = (images.strides[0], images.strides[1] * self.stride, images.strides[2] * self.stride,
                    images.strides[1], images.strides[2],  images.strides[3])
@@ -48,7 +44,6 @@ class PoolingLayer(Layer, ABC):
 
 
 class MaxPoolingLayer(PoolingLayer):
-
     def _operation(self, image):
         return np.max(image, axis=(3, 4))
 

@@ -49,9 +49,6 @@ class Conv2DLayer(Layer):
         return padded
 
     def _get_submatrices(self, images):
-        if len(images.shape) < 4:
-            images = images[np.newaxis, ...]
-
         batch_size = images.shape[0]
         shape = (batch_size, self.output_shape[0], self.output_shape[1],
                  self.filter_size, self.filter_size, self.channels)
